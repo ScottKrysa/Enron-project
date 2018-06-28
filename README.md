@@ -1,2 +1,4 @@
 # Tensorflow-Enron-project
 Dipping my tow into the Tensorflow waters, focusing on fraud detection
+
+*Download the "maildir" at https://www.cs.cmu.edu/~enron/*
