@@ -64,9 +64,9 @@ for x in range(len(email_df)):
 
 email_df['datetime'] = datetime_list
 email_df['datetime'] = pd.to_datetime(email_df['datetime'], utc=True)
-email_df = email_df.set_index('datetime')
+# email_df = email_df.set_index('datetime')
 email_df = email_df.drop(['date'], axis=1)
-email_df.sort_index(inplace=True)
+# email_df.sort_index(inplace=True)
 
 
 pp = pprint.PrettyPrinter(indent=4)
