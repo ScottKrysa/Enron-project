@@ -4,9 +4,11 @@ import pandas as pd
 from pandas.io.json import json_normalize
 from email_analyzer_pd import EmailAnalyzer
 from bag_of_words import BagOfWords
+from sentiment_analyzer import SentimentAnalyzer
 import json
 
 import pprint
+pp = pprint.PrettyPrinter(indent=4)
 
 
 """
@@ -47,9 +49,9 @@ try:
 except:
 	pass
 
-email_df = pd.DataFrame(email_list)
+df = pd.DataFrame(email_list)
 
-email_df.columns=['from','to','date','body']
+df.columns=['from','to','date','body']
 
 
 """
@@ -58,44 +60,70 @@ Converting dates from lists to raw datetimes
 
 
 datetime_list = []
-for x in range(len(email_df)):
-	datetime_obj = email_df['date'][x][0]
+for x in range(len(df)):
+	datetime_obj = df['date'][x][0]
 	datetime_list.append(datetime_obj)
 
-email_df['datetime'] = datetime_list
-email_df['datetime'] = pd.to_datetime(email_df['datetime'], utc=True)
-# email_df = email_df.set_index('datetime')
-email_df = email_df.drop(['date'], axis=1)
-# email_df.sort_index(inplace=True)
+df['datetime'] = datetime_list
+df['datetime'] = pd.to_datetime(df['datetime'], utc=True)
+# df = df.set_index('datetime')
+df = df.drop(['date'], axis=1)
+# df.sort_index(inplace=True)
 
-
-pp = pprint.PrettyPrinter(indent=4)
-# pp.pprint(email_df)
+# pp.pprint(df)
 
 
 """
-Testing BagOfWords on a Sample Email Body
+Apply BagOfWords() to each body of 
 """
 
+token_list = []
 
-# token_sample = BagOfWords().get_tokens(email_df['body'][0][0])
+for x in range(len(df)):
+	tokens = BagOfWords().get_tokens(df['body'][x][0])
+	token_list.append(tokens)
 
-# pp = pprint.PrettyPrinter(indent=4)
-# pp.pprint(token_sample)
-# print(list(token_sample))
+df['body_tokens'] = token_list
+
+# pp.pprint(df)
 
 
 """
 Iterate through the files and count words in body
 """
 
-
 token_list = []
 
-for x in range(len(email_df)):
-	tokens = BagOfWords().get_tokens(email_df['body'][x][0])
+for x in range(len(df)):
+	tokens = BagOfWords().get_tokens(df['body'][x][0])
 	token_list.append(tokens)
 
-email_df['body_tokens'] = token_list
+df['body_tokens'] = token_list
 
-pp.pprint(email_df)
+# pp.pprint(df)
+
+
+"""
+SentimentAnalyzer
+"""
+
+
+sa = SentimentAnalyzer()
+# print(sa.do_pos_sentiment_analysis(df['body_tokens'][0]))
+# print(sa.do_neg_sentiment_analysis(df['body_tokens'][0]))
+
+pos_sent_list = []
+for x in range(len(df)):
+    pos_sent_result = sa.do_pos_sentiment_analysis(df['body_tokens'][x])
+    pos_sent_list.append(pos_sent_result[0])
+    
+df['% Positive'] = pos_sent_list
+
+neg_sent_list = []
+for x in range(len(df)):
+    neg_sent_result = sa.do_neg_sentiment_analysis(df['body_tokens'][x])
+    neg_sent_list.append(neg_sent_result[0])
+    
+df['% Negative'] = neg_sent_list
+
+pp.pprint(df)
