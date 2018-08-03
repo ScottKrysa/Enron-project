@@ -8,7 +8,7 @@ The goal of this project is to create a fraud detection model based on the Enron
   
   [+] datetime objects added for later time series analysis
 
-## Part 2: Analyze the elements and choose which to include in the ML model
+## Part 2: Analyze the elements and choose which to include in the TF model
 
   [-] bag_of_words completed but limited application.
   
@@ -16,7 +16,7 @@ The goal of this project is to create a fraud detection model based on the Enron
   
   [-] intending to create a sentiment analysis tool that can monitor trends over time, maybe correlate similar trends to ID co-conspirators
 
-## Part 3: Build one or more models to analyze the elements from Part 2
+## Part 3: Build one or more TF models to analyze the elements from Part 2
 
 ## Part 4: Train and Test
 
