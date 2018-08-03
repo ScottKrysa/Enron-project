@@ -10,7 +10,9 @@ The goal of this project is to create a fraud detection model based on the Enron
 ## Part 2: Analyze the elements and choose which to include in the ML model
 
   [-] bag_of_words completed but limited application.
+  
   [-] intending to create a network analysis tool using the 'to' and 'from' emails
+  
   [-] intending to create a sentiment analysis tool that can monitor trends over time, maybe correlate similar trends to ID co-conspirators
 
 ## Part 3: Build one or more models to analyze the elements from Part 2
