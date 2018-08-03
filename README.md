@@ -10,12 +10,14 @@ The goal of this project is to create a fraud detection model based on the Enron
 
 ## Part 2: Analyze the elements and choose which to include in the TF model
 
-  [-] bag_of_words completed but limited application.
+  [+] bag_of_words completed (Aug 1) but limited application.
   
-  [-] intending to create a network analysis tool using the 'to' and 'from' emails
+  [+] sentiment_analyzer completed (Aug 3) 
   
-  [-] intending to create a sentiment analysis tool that can monitor trends over time, maybe correlate similar trends to ID co-conspirators
-
+  [-] analyze sentiment trends over time, maybe correlate similar trends to identify co-conspirators
+  
+  [-] create a network analysis tool using the 'to' and 'from' emails
+  
 ## Part 3: Build one or more TF models to analyze the elements from Part 2
 
 ## Part 4: Train and Test
